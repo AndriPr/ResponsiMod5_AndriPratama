@@ -1,43 +1,49 @@
 /* ==========================================================================
-   BookVerse PWA — Global CSS Resets & Typography
+   BookVerse PWA — Warm Claymorphism Theme Tokens & Resets
+   Based on Cozy Bookstore UI Reference
    ========================================================================== */
 
 :root {
-  --bg-main: #0B0F19;
-  --bg-surface: #131B2E;
-  --bg-card: #1A243B;
-  --bg-card-hover: #222F4C;
-  --bg-input: #0F172A;
-  
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-focus: #38BDF8;
-  --border-card: rgba(255, 255, 255, 0.12);
+  /* Warm Sand / Cream Palette */
+  --clay-bg-app: #F3ECE5;
+  --clay-bg-canvas: #FAF7F2;
+  --clay-bg-card: #FFFFFF;
+  --clay-bg-card-subtle: #F6F0E8;
+  --clay-bg-input: #FFFFFF;
+  --clay-bg-sidebar: #ECE4DB;
 
-  --text-main: #F8FAFC;
-  --text-muted: #94A3B8;
-  --text-dim: #64748B;
+  /* Typography Colors */
+  --clay-text-primary: #38302A;
+  --clay-text-secondary: #786C62;
+  --clay-text-muted: #A89B8F;
 
-  --primary: #4F46E5;
-  --primary-hover: #4338CA;
-  --accent: #F59E0B;
-  --accent-light: #FBBF24;
-  --accent-cyan: #38BDF8;
+  /* Accent Colors from Image */
+  --clay-gradient-btn: linear-gradient(135deg, #7C71C2 0%, #E87A5D 100%);
+  --clay-coral: #E87A5D;
+  --clay-coral-hover: #D7694C;
+  --clay-purple: #7C71C2;
+  --clay-lavender: #8579C7;
+  --clay-amber: #F59E0B;
+  --clay-rose: #F43F5E;
+  --clay-mint: #10B981;
+  --clay-sky: #38BDF8;
 
-  --success: #10B981;
-  --danger: #EF4444;
-  --danger-bg: rgba(239, 68, 68, 0.12);
+  /* Borders & Shadows */
+  --clay-border: rgba(220, 208, 196, 0.65);
+  --clay-border-light: rgba(255, 255, 255, 0.7);
+  --clay-shadow-soft: 0 10px 28px rgba(180, 160, 140, 0.14);
+  --clay-shadow-deep: 0 16px 40px rgba(160, 140, 120, 0.2);
+  --clay-shadow-inner: inset 0 2px 4px rgba(255, 255, 255, 0.8);
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-full: 9999px;
+  /* Border Radii */
+  --radius-pill: 9999px;
+  --radius-clay-lg: 32px;
+  --radius-clay-md: 22px;
+  --radius-clay-sm: 14px;
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
-
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  /* Font Families */
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 *, *::before, *::after {
@@ -47,21 +53,19 @@
 }
 
 html {
-  font-family: var(--font-sans);
-  background-color: var(--bg-main);
-  color: var(--text-main);
-  line-height: 1.6;
+  font-family: var(--font-main);
+  background-color: var(--clay-bg-app);
+  color: var(--clay-text-primary);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   min-height: 100dvh;
+  background-color: var(--clay-bg-app);
   overflow-x: hidden;
-  background: radial-gradient(circle at 50% 0%, #172036 0%, #0B0F19 75%);
-  background-attachment: fixed;
 }
 
 input, button, select, textarea {
@@ -80,22 +84,22 @@ img, svg {
 }
 
 ::selection {
-  background: var(--primary);
+  background: #E87A5D;
   color: #FFFFFF;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0F19;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #25334E;
-  border-radius: 4px;
+  background: #D8CCC0;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #384A6E;
+  background: #BFAF9E;
 }

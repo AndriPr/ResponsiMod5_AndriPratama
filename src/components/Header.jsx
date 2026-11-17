@@ -1,73 +1,75 @@
-import { Plus, Heart, User, Info, Library } from 'lucide-react'
+import { Search, Heart, MessageSquare, Plus } from 'lucide-react'
 import { useFavorites } from '../hooks/useFavorites'
 
-const NAV_ITEMS = [
-  { id: 'Catalog', label: 'Katalog', icon: Library },
-  { id: 'Favorites', label: 'Favorit', icon: Heart, hasBadge: true },
-  { id: 'Profile', label: 'Profil', icon: User },
-  { id: 'About', label: 'Tentang', icon: Info },
-]
-
-export default function Header({ tab, onTab, onNavigateCreate }) {
+export default function Header({
+  search,
+  onSearch,
+  onTab,
+  onToggleChat,
+  isChatOpen,
+  onNavigateCreate,
+}) {
   const { favorites } = useFavorites()
   const favCount = favorites ? favorites.length : 0
 
   return (
-    <header className="site-header">
-      <div className="site-header__container">
-        {/* Brand */}
-        <div
-          className="brand-group"
-          onClick={() => onTab('Catalog')}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === 'Enter' && onTab('Catalog')}
+    <header className="clay-topbar">
+      {/* Pill Search Bar */}
+      <div className="clay-search-pill">
+        <Search size={18} className="clay-search-icon" />
+        <input
+          type="search"
+          placeholder="Search for books, authors, or genres..."
+          value={search}
+          onChange={(e) => onSearch && onSearch(e.target.value)}
+          className="clay-search-input"
+          aria-label="Cari buku"
+        />
+        <button
+          type="button"
+          className="clay-search-submit-btn"
+          onClick={() => onTab && onTab('Catalog')}
         >
-          <div className="brand-logo-badge">
-            <img src="/favicon.svg" alt="BookVerse" width="28" height="28" />
-          </div>
-          <div className="brand-texts">
-            <span className="brand-name">BookVerse</span>
-            <span className="brand-sub">PERPUSTAKAAN DIGITAL</span>
-          </div>
-        </div>
+          search
+        </button>
+      </div>
 
-        {/* Navigation */}
-        <nav className="site-nav">
-          {NAV_ITEMS.map((item) => {
-            const Icon = item.icon
-            const isActive = tab === item.id
-            return (
-              <button
-                key={item.id}
-                type="button"
-                className={`nav-btn ${isActive ? 'nav-btn--active' : ''}`}
-                onClick={() => onTab(item.id)}
-              >
-                <Icon size={16} className="nav-btn__icon" />
-                <span className="nav-btn__label">{item.label}</span>
-                {item.hasBadge && favCount > 0 && (
-                  <span className="nav-badge">{favCount}</span>
-                )}
-              </button>
-            )
-          })}
-        </nav>
+      {/* Right Action Icons (Favorites Cart + Chat Toggle + Add Book) */}
+      <div className="clay-topbar-actions">
+        {onNavigateCreate && (
+          <button
+            type="button"
+            className="topbar-action-pill"
+            onClick={onNavigateCreate}
+            title="Tambah Buku (CRUD)"
+          >
+            <Plus size={16} />
+            <span className="topbar-action-label">Tambah Buku</span>
+          </button>
+        )}
 
-        {/* Action Button */}
-        <div className="header-actions">
-          {onNavigateCreate && (
-            <button
-              type="button"
-              className="btn btn--primary btn--sm"
-              onClick={onNavigateCreate}
-              title="Tambah Buku Baru"
-            >
-              <Plus size={16} />
-              <span className="btn-text">Tambah Buku</span>
-            </button>
-          )}
-        </div>
+        {/* Favorites Cart with Red Badge */}
+        <button
+          type="button"
+          className="clay-cart-btn"
+          onClick={() => onTab('Favorites')}
+          title="Buku Favorit & Simpanan"
+        >
+          <Heart size={20} />
+          {favCount > 0 && <span className="clay-cart-badge">{favCount}</span>}
+        </button>
+
+        {/* Toggle Assistant Chat */}
+        {onToggleChat && (
+          <button
+            type="button"
+            className={`clay-chat-toggle-btn ${isChatOpen ? 'active' : ''}`}
+            onClick={onToggleChat}
+            title={isChatOpen ? 'Tutup Chat' : 'Buka Asisten Chat'}
+          >
+            <MessageSquare size={19} />
+          </button>
+        )}
       </div>
     </header>
   )

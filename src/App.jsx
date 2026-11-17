@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import Sidebar from './components/Sidebar.jsx'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
+import ChatAssistant from './components/ChatAssistant.jsx'
 import Catalog from './pages/Catalog.jsx'
 import FavoritesPage from './pages/FavoritesPage.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
@@ -21,11 +23,17 @@ export default function App() {
   const [selectedBook, setSelectedBook] = useState(null)
   const [editingBook, setEditingBook] = useState(null)
 
-  // Global Delete target
+  // Global search input in topbar
+  const [searchQuery, setSearchQuery] = useState('')
+
+  // Chat assistant panel visibility
+  const [isChatOpen, setIsChatOpen] = useState(true)
+
+  // Delete target state
   const [deleteTarget, setDeleteTarget] = useState(null)
   const [deleting, setDeleting] = useState(false)
 
-  // Handler navigasi terpadu
+  // Navigation handler
   const handleNavigate = (target, payload) => {
     if (target === 'Create') {
       setMode('create')
@@ -39,7 +47,6 @@ export default function App() {
       setMode('detail')
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
-      // Pergantian Tab utama
       setTab(target)
       setMode('list')
       setSelectedBook(null)
@@ -70,81 +77,104 @@ export default function App() {
   }
 
   return (
-    <div className="shell">
-      {/* Animasi Pembuka Splash Screen */}
+    <div className="clay-app-shell">
+      {/* 1. Splash Screen Intro */}
       {showSplash && (
         <SplashScreen onFinish={() => setShowSplash(false)} />
       )}
 
-      {/* Header & Navigasi */}
-      <Header
-        tab={mode === 'list' ? tab : ''}
-        onTab={(newTab) => handleNavigate(newTab)}
-        onNavigateCreate={() => handleNavigate('Create')}
-      />
+      {/* 2. Main Claymorphism Desktop Layout Frame */}
+      <div className="clay-main-frame">
+        {/* Left Column: Vertical Icon Rail */}
+        <Sidebar
+          tab={mode === 'list' ? tab : ''}
+          onTab={(t) => handleNavigate(t)}
+          onNavigateCreate={() => handleNavigate('Create')}
+        />
 
-      {/* Konten Halaman Utama */}
-      <main className="main-container">
-        {/* Sub-halaman Tambah Buku */}
-        {mode === 'create' && (
-          <CreateBookPage
-            onBack={handleBackToList}
-            onSuccess={() => {
-              handleBackToList()
-              setTab('Catalog')
-            }}
+        {/* Center Column: App Content Canvas */}
+        <div className="clay-center-column">
+          {/* Topbar: Pill Search, Cart/Fav, Add Book, Chat Toggle */}
+          <Header
+            search={searchQuery}
+            onSearch={setSearchQuery}
+            onTab={(t) => handleNavigate(t)}
+            onToggleChat={() => setIsChatOpen((prev) => !prev)}
+            isChatOpen={isChatOpen}
+            onNavigateCreate={() => handleNavigate('Create')}
           />
-        )}
 
-        {/* Sub-halaman Edit Buku */}
-        {mode === 'edit' && (
-          <EditBookPage
-            book={editingBook}
-            bookId={editingBook?.id}
-            onBack={handleBackToList}
-            onSuccess={() => {
-              handleBackToList()
-              setTab('Catalog')
-            }}
-          />
-        )}
-
-        {/* Sub-halaman Detail Buku */}
-        {mode === 'detail' && selectedBook && (
-          <BookDetail
-            book={selectedBook}
-            onBack={handleBackToList}
-            onEdit={(b) => handleNavigate('Edit', b)}
-            onDelete={(b) => setDeleteTarget(b)}
-          />
-        )}
-
-        {/* Tab Utama */}
-        {mode === 'list' && (
-          <>
-            {tab === 'Catalog' && (
-              <Catalog
-                onNavigate={(dest, payload) => handleNavigate(dest, payload)}
+          {/* Dynamic Content View */}
+          <main className="clay-content-body">
+            {mode === 'create' && (
+              <CreateBookPage
+                onBack={handleBackToList}
+                onSuccess={() => {
+                  handleBackToList()
+                  setTab('Catalog')
+                }}
               />
             )}
-            {tab === 'Favorites' && (
-              <FavoritesPage
-                onSelectBook={(b) => handleNavigate('Detail', b)}
-                onNavigateCatalog={() => setTab('Catalog')}
-              />
-            )}
-            {tab === 'Profile' && (
-              <ProfilePage
-                onReplaySplash={() => setShowSplash(true)}
-                onRefreshCatalog={() => setTab('Catalog')}
-              />
-            )}
-            {tab === 'About' && <AboutPage />}
-          </>
-        )}
-      </main>
 
-      {/* Modal Hapus Global */}
+            {mode === 'edit' && (
+              <EditBookPage
+                book={editingBook}
+                bookId={editingBook?.id}
+                onBack={handleBackToList}
+                onSuccess={() => {
+                  handleBackToList()
+                  setTab('Catalog')
+                }}
+              />
+            )}
+
+            {mode === 'detail' && selectedBook && (
+              <BookDetail
+                book={selectedBook}
+                onBack={handleBackToList}
+                onEdit={(b) => handleNavigate('Edit', b)}
+                onDelete={(b) => setDeleteTarget(b)}
+              />
+            )}
+
+            {mode === 'list' && (
+              <>
+                {tab === 'Catalog' && (
+                  <Catalog
+                    onNavigate={(dest, payload) => handleNavigate(dest, payload)}
+                    search={searchQuery}
+                  />
+                )}
+                {tab === 'Favorites' && (
+                  <FavoritesPage
+                    onSelectBook={(b) => handleNavigate('Detail', b)}
+                    onNavigateCatalog={() => setTab('Catalog')}
+                  />
+                )}
+                {tab === 'Profile' && (
+                  <ProfilePage
+                    onReplaySplash={() => setShowSplash(true)}
+                    onRefreshCatalog={() => setTab('Catalog')}
+                  />
+                )}
+                {tab === 'About' && <AboutPage />}
+              </>
+            )}
+          </main>
+
+          <Footer />
+        </div>
+
+        {/* Right Column: Chat Assistant Panel */}
+        {isChatOpen && (
+          <ChatAssistant
+            onClose={() => setIsChatOpen(false)}
+            onSelectBook={(b) => handleNavigate('Detail', b)}
+          />
+        )}
+      </div>
+
+      {/* Global Delete Confirmation */}
       <ConfirmModal
         open={Boolean(deleteTarget)}
         title="Hapus Buku"
@@ -157,11 +187,8 @@ export default function App() {
         onCancel={() => setDeleteTarget(null)}
       />
 
-      {/* PWA Offline & Install Prompt Badge */}
+      {/* PWA Offline & Install Badge */}
       <PWABadge />
-
-      {/* Footer */}
-      <Footer />
     </div>
   )
 }
