@@ -48,7 +48,7 @@ export const getUserProfile = () => {
       return {
         name: parsed.name || 'Andri Pratama',
         nim: parsed.nim || '21120122140123',
-        kelompok: parsed.kelompok || 'Kelompok 15',
+        kelompok: parsed.kelompok || 'Kelompok 29',
         role: parsed.role || 'Praktikan Pemrograman Perangkat Bergerak 2026',
         bio:
           parsed.bio ||
@@ -67,7 +67,7 @@ export const getUserProfile = () => {
   return {
     name: 'Andri Pratama',
     nim: '21120122140123',
-    kelompok: 'Kelompok 15',
+    kelompok: 'Kelompok 29',
     role: 'Praktikan Pemrograman Perangkat Bergerak 2026',
     bio:
       'Mahasiswa Teknik Komputer yang sedang mendalami pengembangan Progressive Web App (PWA) offline-first dengan React, Vite, dan Service Worker.',

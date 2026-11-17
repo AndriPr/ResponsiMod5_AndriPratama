@@ -8,7 +8,7 @@
 ## 👤 Identitas Praktikan
 - **Nama:** Andri Pratama
 - **NIM:** 21120122140123
-- **Kelompok:** Kelompok 15
+- **Kelompok:** Kelompok 29
 - **Mata Kuliah:** Praktikum Pemrograman Perangkat Bergerak (PPB) 2026
 
 ---
@@ -23,7 +23,7 @@
 | Kriteria Tugas Responsi | Status | Implementasi pada BookVerse PWA |
 | :--- | :---: | :--- |
 | **Minimal 3 Halaman Navigasi** | ✅ Terpenuhi (5 Halaman) | 1. **Katalog Buku** (Pencarian, Filter Kategori, Pengurutan, Grid Koleksi)<br>2. **Buku Favorit** (Wishlist & Bookmark Bacaan)<br>3. **Tambah & Edit Buku** (CRUD Formulir + Upload Gambar/Preset + Auto Draft)<br>4. **Detail Buku** (Sinopsis, Daftar Bab, Rating Bintang & Ulasan)<br>5. **Profil Praktikan** (Kartu Mahasiswa, NIM, Kelompok, Statistik & PWA Diagnostik)<br>6. **Tentang PWA** (Arsitektur Service Worker & Panduan Instalasi) |
-| **Halaman Profil: Nama, NIM, Kelompok** | ✅ Terpenuhi | Halaman Profil memuat Kartu Praktikan resmi yang menampilkan secara jelas **Nama (Andri Pratama)**, **NIM (21120122140123)**, dan **Kelompok (Kelompok 15)** lengkap dengan foto profil/avatar, role praktikum, dan formulir pengeditan profil yang tersimpan persisten ke `localStorage`. |
+| **Halaman Profil: Nama, NIM, Kelompok** | ✅ Terpenuhi | Halaman Profil memuat Kartu Praktikan resmi yang menampilkan secara jelas **Nama (Andri Pratama)**, **NIM (21120122140123)**, dan **Kelompok (Kelompok 29)** lengkap dengan foto profil/avatar, role praktikum, dan formulir pengeditan profil yang tersimpan persisten ke `localStorage`. |
 | **CRUD Fungsional** | ✅ Terpenuhi | - **Create:** Menambahkan buku baru dengan sampul gambar (upload file lokal / preset), judul, penulis, kategori, tahun, halaman, status, dan bab.<br>- **Read:** Menampilkan katalog buku dengan pencarian teks, filter kategori, pengurutan, dan halaman detail.<br>- **Update:** Mengedit buku yang ada beserta sampul dan bab materinya.<br>- **Delete:** Menghapus buku dari katalog dengan dialog konfirmasi modal interaktif.<br>- **Persistensi Data:** Data disimpan secara persisten di `localStorage` dan dapat diakses offline. |
 | **Fungsionalitas PWA (Installable & Offline)** | ✅ Terpenuhi | - **Service Worker & Caching:** Menggunakan `vite-plugin-pwa` (Workbox) dengan strategi caching asset statis.<br>- **Web App Manifest:** Dikonfigurasi dengan nama, ikon 192x192 & 512x512, tema warna, mode tampilan `standalone`.<br>- **PWABadge:** Menampilkan prompt instalasi PWA dan notifikasi status saat offline. |
 | **Deployment ke Vercel** | ✅ Siap Deploy | Dilengkapi berkas konfigurasi `vercel.json` dengan URL rewrite untuk Single Page Application (SPA) dan kontrol cache Service Worker. |

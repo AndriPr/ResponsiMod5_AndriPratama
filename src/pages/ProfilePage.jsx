@@ -30,7 +30,7 @@ export default function ProfilePage({ onReplaySplash, onRefreshCatalog }) {
   // Form states untuk Nama, NIM, Kelompok
   const [name, setName] = useState(profile.name || 'Andri Pratama')
   const [nim, setNim] = useState(profile.nim || '21120122140123')
-  const [kelompok, setKelompok] = useState(profile.kelompok || 'Kelompok 15')
+  const [kelompok, setKelompok] = useState(profile.kelompok || 'Kelompok 29')
   const [bio, setBio] = useState(profile.bio || '')
   const [avatar, setAvatar] = useState(profile.avatar || null)
 
@@ -90,7 +90,7 @@ export default function ProfilePage({ onReplaySplash, onRefreshCatalog }) {
       ...profile,
       name: name.trim() || 'Andri Pratama',
       nim: nim.trim() || '21120122140123',
-      kelompok: kelompok.trim() || 'Kelompok 15',
+      kelompok: kelompok.trim() || 'Kelompok 29',
       bio: bio.trim(),
       avatar,
     }
@@ -285,7 +285,7 @@ export default function ProfilePage({ onReplaySplash, onRefreshCatalog }) {
                 type="text"
                 value={kelompok}
                 onChange={(e) => setKelompok(e.target.value)}
-                placeholder="Contoh: Kelompok 15"
+                placeholder="Contoh: Kelompok 29"
                 className="form-input"
                 required
               />
