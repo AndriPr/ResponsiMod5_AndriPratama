@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="bookGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+  <!-- Background Rounded Squircle -->
+  <rect x="6" y="6" width="88" height="88" rx="22" fill="url(#bookGrad)" filter="url(#shadow)" />
+  <!-- Open Book Pages -->
+  <path d="M26 34C34 32 44 34 50 38C56 34 66 32 74 34V68C66 66 56 68 50 72C44 68 34 66 26 68V34Z" fill="#FFFFFF" />
+  <!-- Spine Line -->
+  <path d="M50 38V72" stroke="#CBD5E1" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Page Lines Left -->
+  <path d="M32 44H44M32 50H42M32 56H44" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" />
+  <!-- Bookmark Ribbon -->
+  <path d="M56 34V52L62 48L68 52V33.5" fill="url(#goldGrad)" />
+</svg>

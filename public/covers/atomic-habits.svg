@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450" width="300" height="450">
+  <defs>
+    <linearGradient id="coverBg-SELFIMPROVEMENT" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350F"/>
+      <stop offset="100%" stop-color="#0b0f19"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="450" fill="url(#coverBg-SELFIMPROVEMENT)"/>
+  <rect x="15" y="15" width="270" height="420" rx="6" fill="none" stroke="#FBBF24" stroke-width="1.5" stroke-opacity="0.3"/>
+  <text x="150" y="55" fill="#FBBF24" font-size="10" font-weight="700" letter-spacing="2" text-anchor="middle" font-family="sans-serif">SELF IMPROVEMENT</text>
+  <line x1="110" y1="65" x2="190" y2="65" stroke="#FBBF24" stroke-width="1" stroke-opacity="0.6"/>
+  <text x="150" y="125" fill="#FFFFFF" font-size="22" font-weight="800" font-family="Georgia, serif" text-anchor="middle">Atomic Habits</text>
+  <text x="150" y="150" fill="#94A3B8" font-size="11" font-family="sans-serif" text-anchor="middle">Tiny Changes, Remarkable Results</text>
+  <g transform="translate(100, 190)">
+    <circle cx="50" cy="50" r="20" stroke="#FBBF24" stroke-width="3" stroke-dasharray="4 4" fill="none"/><circle cx="50" cy="50" r="8" fill="#FBBF24"/>
+  </g>
+  <rect x="30" y="370" width="240" height="1" fill="#FBBF24" fill-opacity="0.4"/>
+  <text x="150" y="402" fill="#E2E8F0" font-size="12" font-weight="600" letter-spacing="1" text-anchor="middle" font-family="sans-serif">James Clear</text>
+</svg>
